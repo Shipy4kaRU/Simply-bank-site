@@ -21,6 +21,7 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 body {
@@ -665,9 +666,19 @@ h4 {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  width: 100%;
+  width: 100vw;
   background-color: white;
   color: #bbb;
   font-size: 1.5rem;
   font-weight: 400;
+  position: absolute;
+  bottom: 0;
+  position: fixed;
+  z-index: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.cookie-message p {
+  margin-left: 10%;
 }
