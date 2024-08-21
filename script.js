@@ -1,5 +1,6 @@
 'use strict';
 
+const header = document.querySelector('.header');
 const modalWindow = document.querySelector('.modal-window');
 const overlay = document.querySelector('.overlay');
 const btnCloseModalWindow = document.querySelector('.btn--close-modal-window');
@@ -47,6 +48,17 @@ const hoverNavLinks = function (e) {
 panelNav.addEventListener('mouseover', hoverNavLinks.bind('0.7'));
 
 panelNav.addEventListener('mouseout', hoverNavLinks.bind('1'));
+
+// COOKIE
+
+const cookie = document.createElement('div');
+cookie.classList.add('cookie-message');
+cookie.innerHTML = `<p>Мы используем на этом сайте cookie для улучшения функциональности.</p> <button class='btn btn--cookie'>Ок!<button>`;
+header.append(cookie);
+
+document.querySelector('.btn--cookie').addEventListener('click', function () {
+  cookie.remove();
+});
 
 // MODAL WINDOW
 
