@@ -1,14 +1,32 @@
 'use strict';
 
-///////////////////////////////////////
-// Modal window
-
 const modalWindow = document.querySelector('.modal-window');
 const overlay = document.querySelector('.overlay');
 const btnCloseModalWindow = document.querySelector('.btn--close-modal-window');
 const btnsOpenModalWindow = document.querySelectorAll(
   '.btn--show-modal-window'
 );
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const panelNav = document.querySelector('.nav');
+const panelNavLinks = document.querySelector('.nav__links');
+const section1 = document.querySelector('#section--1');
+
+// SCROLL TO
+
+btnScrollTo.addEventListener('click', function () {
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+const scrollFunction = function (e) {
+  e.preventDefault();
+  const href = e.target.getAttribute('href');
+  if (e.target.classList.contains('nav__link'))
+    document.querySelector(`#${href}`).scrollIntoView({ behavior: 'smooth' });
+};
+
+panelNavLinks.addEventListener('click', scrollFunction);
+
+// MODAL WINDOW
 
 const openModalWindow = function (e) {
   e.preventDefault();
