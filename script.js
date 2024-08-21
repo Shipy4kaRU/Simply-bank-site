@@ -13,6 +13,9 @@ const panelNavLinks = document.querySelector('.nav__links');
 const section1 = document.querySelector('#section--1');
 const navLogo = document.querySelector('.nav__logo');
 const navText = document.querySelector('.nav__text');
+const tabContainer = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+const btnTabs = document.querySelectorAll('.operations__tab');
 
 // SCROLL TO
 
@@ -31,8 +34,6 @@ panelNavLinks.addEventListener('click', function (e) {
 
 const hoverNavLinks = function (e) {
   const link = e.target;
-  console.log(e.target);
-  console.log(e.currentTarget);
   if (link.classList.contains('nav__link')) {
     const siblings = Array.from(
       link.closest('.nav__links').querySelectorAll('.nav__link')
@@ -86,4 +87,21 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modalWindow.classList.contains('hidden')) {
     closeModalWindow();
   }
+});
+
+// TABS
+
+tabContainer.addEventListener('click', function (e) {
+  const tab = e.target.closest('.operations__tab');
+  if (!tab) return;
+  Array.from(tabContainer.children).forEach(el =>
+    el.classList.remove('operations__tab--active')
+  );
+  tab.classList.add('operations__tab--active');
+  Array.from(tabContent).forEach(el =>
+    el.classList.remove('operations__content--active')
+  );
+  document
+    .querySelector(`.operations__content--${tab.dataset.tab}`)
+    .classList.add('operations__content--active');
 });
