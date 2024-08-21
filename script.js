@@ -123,3 +123,21 @@ const stickyNavObserver = new IntersectionObserver(getStickyNav, {
 });
 
 stickyNavObserver.observe(header);
+
+// SURFACING SECTIONS
+
+const getSurfacing = function (entries, observe) {
+  const entry = entries[0];
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+};
+
+const surfacingObserver = new IntersectionObserver(getSurfacing, {
+  root: null,
+  threshold: 0.13,
+});
+
+allSection.forEach(function (section) {
+  surfacingObserver.observe(section);
+  section.classList.add('section--hidden');
+});
