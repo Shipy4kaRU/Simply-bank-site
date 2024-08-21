@@ -18,6 +18,7 @@ const tabContainer = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 const btnTabs = document.querySelectorAll('.operations__tab');
 const allSection = document.querySelectorAll('.section');
+const lazyImages = document.querySelectorAll('.lazy-img');
 
 // SCROLL TO
 
@@ -142,3 +143,23 @@ allSection.forEach(function (section) {
   surfacingObserver.observe(section);
   section.classList.add('section--hidden');
 });
+
+// LAZY LOADING IMAGES
+
+const loadImages = function (entries, observer) {
+  const entry = entries[0];
+  if (!entry.isIntersecting) return;
+  entry.target.src = entry.target.dataset.src;
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
+  });
+  observer.unobserve(entry.target);
+};
+
+const imagesObserver = new IntersectionObserver(loadImages, {
+  root: null,
+  threshold: 0.5,
+  rootMargin: '10px',
+});
+
+lazyImages.forEach(img => imagesObserver.observe(img));
