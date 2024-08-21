@@ -126,10 +126,11 @@ stickyNavObserver.observe(header);
 
 // SURFACING SECTIONS
 
-const getSurfacing = function (entries, observe) {
+const getSurfacing = function (entries, observer) {
   const entry = entries[0];
   if (!entry.isIntersecting) return;
   entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target);
 };
 
 const surfacingObserver = new IntersectionObserver(getSurfacing, {
