@@ -10,6 +10,8 @@ const btnScrollTo = document.querySelector('.btn--scroll-to');
 const panelNav = document.querySelector('.nav');
 const panelNavLinks = document.querySelector('.nav__links');
 const section1 = document.querySelector('#section--1');
+const navLogo = document.querySelector('.nav__logo');
+const navText = document.querySelector('.nav__text');
 
 // SCROLL TO
 
@@ -23,6 +25,28 @@ panelNavLinks.addEventListener('click', function (e) {
   if (e.target.classList.contains('nav__link'))
     document.querySelector(`#${href}`).scrollIntoView({ behavior: 'smooth' });
 });
+
+// DARKENING NAV PANEL LINKS
+
+const hoverNavLinks = function (e) {
+  const link = e.target;
+  console.log(e.target);
+  console.log(e.currentTarget);
+  if (link.classList.contains('nav__link')) {
+    const siblings = Array.from(
+      link.closest('.nav__links').querySelectorAll('.nav__link')
+    );
+    siblings.forEach(sibling => {
+      if (sibling !== link) sibling.style.opacity = this;
+    });
+    navLogo.style.opacity = this;
+    navText.style.opacity = this;
+  }
+};
+
+panelNav.addEventListener('mouseover', hoverNavLinks.bind('0.7'));
+
+panelNav.addEventListener('mouseout', hoverNavLinks.bind('1'));
 
 // MODAL WINDOW
 
