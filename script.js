@@ -9,6 +9,7 @@ const btnsOpenModalWindow = document.querySelectorAll(
 );
 const btnScrollTo = document.querySelector('.btn--scroll-to');
 const panelNav = document.querySelector('.nav');
+const panelNavHeight = panelNav.getBoundingClientRect().height;
 const panelNavLinks = document.querySelector('.nav__links');
 const section1 = document.querySelector('#section--1');
 const navLogo = document.querySelector('.nav__logo');
@@ -16,6 +17,7 @@ const navText = document.querySelector('.nav__text');
 const tabContainer = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 const btnTabs = document.querySelectorAll('.operations__tab');
+const allSection = document.querySelectorAll('.section');
 
 // SCROLL TO
 
@@ -105,3 +107,19 @@ tabContainer.addEventListener('click', function (e) {
     .querySelector(`.operations__content--${tab.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+// STICKY NAVIGATION
+
+const getStickyNav = function (entries) {
+  const entry = entries[0];
+  if (!entry.isIntersecting) panelNav.classList.add('sticky');
+  else panelNav.classList.remove('sticky');
+};
+
+const stickyNavObserver = new IntersectionObserver(getStickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${panelNavHeight - 5}px`,
+});
+
+stickyNavObserver.observe(header);
