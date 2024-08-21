@@ -17,14 +17,12 @@ btnScrollTo.addEventListener('click', function () {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
 
-const scrollFunction = function (e) {
+panelNavLinks.addEventListener('click', function (e) {
   e.preventDefault();
   const href = e.target.getAttribute('href');
   if (e.target.classList.contains('nav__link'))
     document.querySelector(`#${href}`).scrollIntoView({ behavior: 'smooth' });
-};
-
-panelNavLinks.addEventListener('click', scrollFunction);
+});
 
 // MODAL WINDOW
 
