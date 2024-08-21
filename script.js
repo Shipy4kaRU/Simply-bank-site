@@ -51,14 +51,17 @@ panelNav.addEventListener('mouseout', hoverNavLinks.bind('1'));
 
 // COOKIE
 
-const cookie = document.createElement('div');
-cookie.classList.add('cookie-message');
-cookie.innerHTML = `<p>Мы используем на этом сайте cookie для улучшения функциональности.</p> <button class='btn btn--cookie'>Ок!<button>`;
-header.append(cookie);
+if (localStorage.getItem('buttonClicked') !== 'true') {
+  const cookie = document.createElement('div');
+  cookie.classList.add('cookie-message');
+  cookie.innerHTML = `<p>Мы используем на этом сайте cookie для улучшения функциональности.</p> <button class='btn btn--cookie'>Ок!</button>`;
+  header.append(cookie);
 
-document.querySelector('.btn--cookie').addEventListener('click', function () {
-  cookie.remove();
-});
+  document.querySelector('.btn--cookie').addEventListener('click', function () {
+    localStorage.setItem('buttonClicked', 'true');
+    cookie.remove();
+  });
+}
 
 // MODAL WINDOW
 
